@@ -64,10 +64,17 @@ app.post('/signup',(req,res)=>{
                     });
                     user.save()
                         .then(result=>{
-                           res.json(result)
+                           const userSymptom = new UserSymptom({
+                               id:result._id,
+                               symptoms:[]
+                           })
+                           userSymptom.save()
+                                .then(result1=>{
+                                    res.json(result)
+                                })
                         })
                         .catch(err=>{
-                            return err
+                            res.json(err)
                         })
                 })
             }
