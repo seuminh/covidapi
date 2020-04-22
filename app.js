@@ -7,8 +7,6 @@ const User = require('./models/user');
 
 const adminRoute = require('./routes/admin')
 
-// ||mongodb://localhost/covid
-// mongodb+srv://seuminh:<password>@covid-i6z7c.mongodb.net/test?retryWrites=true&w=majority
 mongoose.connect('process.env.DATABASE',{
     useNewUrlParser:true,
     useUnifiedTopology:true

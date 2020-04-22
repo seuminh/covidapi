@@ -17,8 +17,8 @@ const adminBro = new AdminBro({
 })
 
 const ADMIN = {
-  email: process.env.ADMINEMAIL||'hello@db.com',
-  password: process.env.ADMINPASSWORD||'hello',
+  email: process.env.ADMINEMAIL,
+  password: process.env.ADMINPASSWORD,
 }
 
 const router = AdminBroExpress.buildAuthenticatedRouter(adminBro, {
