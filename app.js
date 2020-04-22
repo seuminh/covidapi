@@ -4,10 +4,12 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt-nodejs');
 
 const User = require('./models/user');
+const UserSymptom = require('./models/userSymptom');
 
 const adminRoute = require('./routes/admin')
 
 //mongodb://localhost/covid
+// process.env.DATABASE 
 
 mongoose.connect(process.env.DATABASE,{
     useNewUrlParser:true,
@@ -73,7 +75,33 @@ app.post('/signup',(req,res)=>{
         .catch(err=>{
            res.json('Error SignUp')
         })
-   
+})
+
+app.get('/userSymptom',(req,res)=>{
+    UserSymptom.findOne({
+        id:req.query.id
+    })
+        .then(docs=>{
+            res.json(docs)
+        })
+})
+
+app.post('/userSymptom',(req,res)=>{
+    var d = new Date();
+    UserSymptom.findOne({
+        id:req.body.id
+    })
+        .then(doc=>{
+           if(doc){
+                const symptom={
+                    date:d.toDateString(),
+                    symptom: req.body.symptom
+                }
+                doc.symptoms.push(symptom);
+                doc.save()
+                    .then(doc1=>res.json(doc1))
+           }
+        })
 })
 
 app.listen(process.env.PORT || 3000, () => {
