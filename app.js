@@ -28,11 +28,11 @@ app.get('/', (req, res) => {
 
 app.get('/login', (req, res) => {
     User.findOne({
-        phone:req.body.phone,
+        phone:req.query.phone,
     })
         .then(docs=>{
             if(docs){
-                bcrypt.compare(req.body.password,docs.password,function(err,res1){
+                bcrypt.compare(req.query.password,docs.password,function(err,res1){
                     if(res1===true){
                         res.json(docs)
                     }
