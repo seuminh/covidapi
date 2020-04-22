@@ -7,7 +7,9 @@ const User = require('./models/user');
 
 const adminRoute = require('./routes/admin')
 
-mongoose.connect('process.env.DATABASE',{
+//mongodb://localhost/covid
+
+mongoose.connect(process.env.DATABASE,{
     useNewUrlParser:true,
     useUnifiedTopology:true
 })
