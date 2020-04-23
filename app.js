@@ -104,6 +104,7 @@ app.post('/userSymptom',(req,res)=>{
                     date:d.toDateString(),
                     symptom: req.body.symptom
                 }
+                doc.username=req.body.username;
                 doc.symptoms.push(symptom);
                 doc.save()
                     .then(doc1=>res.json(doc1))
