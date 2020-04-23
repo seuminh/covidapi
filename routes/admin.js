@@ -5,13 +5,17 @@ const AdminBroMongoose = require('admin-bro-mongoose')
 const mongoose = require("mongoose")
 
 const User = require('../models/user');
+const UserSymptom = require('../models/userSymptom');
+const Video = require('../models/video')
 
 AdminBro.registerAdapter(AdminBroMongoose)
 
 const adminBro = new AdminBro({
   databases: [mongoose],
   resources:[
-    User
+    User,
+    UserSymptom,
+    Video
   ],
   rootPath: '/admin',
 })

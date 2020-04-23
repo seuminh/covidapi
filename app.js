@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt-nodejs');
 
 const User = require('./models/user');
 const UserSymptom = require('./models/userSymptom');
+const Video = require('./models/video')
 
 const adminRoute = require('./routes/admin')
 
@@ -81,6 +82,13 @@ app.post('/signup',(req,res)=>{
         })
         .catch(err=>{
            res.json('Error SignUp')
+        })
+})
+
+app.get('/video',(req,res)=>{
+    Video.find()
+        .then(docs=>{
+            res.json(docs)
         })
 })
 
